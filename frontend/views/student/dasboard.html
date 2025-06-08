@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Executive - École 221</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+</head>
+<body class="dark:bg-slate-900 bg-gray-100 min-h-screen ">
+      <!-- Container Principal -->
+    <div class="flex h-screen">
+        <div id="sidebar"></div>
+         <!-- Contenu Principal -->
+         <div class="flex-1 flex flex-col overflow-hidden">
+          <!-- Header -->
+        <header class="bg-slate-800/90 backdrop-blur-lg border-b border-slate-700/50 p-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <button class="lg:hidden text-slate-300">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="text-lg font-semibold text-slate-200">Tableau de Bord</div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 hover:bg-slate-700/30 rounded-full transition-colors">
+                        <i class="fas fa-bell text-slate-300"></i>
+                    </button>
+                    <div class="flex items-center space-x-2">
+                        <div class="student-avatar h-8 w-8 rounded-full flex items-center justify-center 
+                            bg-gradient-to-br from-indigo-500 to-blue-400 text-white font-bold 
+                            ring-2 ring-indigo-500/30 group-hover:ring-indigo-400/50 transition-all">
+                            <?= substr($_SESSION['user']['prenom'], 0, 1) . substr($_SESSION['user']['nom'], 0, 1) ?>
+                        </div>
+                        <span class="text-slate-300"><?= $_SESSION['user']['prenom'] ?> <?= $_SESSION['user']['nom'] ?></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+                <!-- Contenu -->
+                <main class="flex-1 overflow-y-auto p-6 bg-slate-900/50">
+                    <!-- Cartes Statistiques -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <!-- Cours programmés -->
+                        <div class="bg-gradient-to-br from-indigo-500/20 to-purple-600/20 p-6 rounded-2xl border border-slate-700/30 backdrop-blur-lg">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="text-sm text-slate-400 mb-1">Cours programmés</div>
+                                    <div id="coursCount" class="text-2xl font-bold text-slate-200">...</div>
+                                </div>
+                                <i class="fas fa-clock text-3xl text-indigo-400"></i>
+                            </div>
+                            <div class="mt-4">
+                                <div class="h-1 bg-slate-700/50 rounded-full">
+                                    <div class="w-3/4 h-full bg-indigo-400 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Heures d'absence -->
+                        <div class="bg-gradient-to-br from-pink-500/20 to-orange-600/20 p-6 rounded-2xl border border-slate-700/30 backdrop-blur-lg">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="text-sm text-slate-400 mb-1">Heures d'absence</div>
+                                    <div id="absenceHeures" class="text-2xl font-bold text-slate-200">...</div>
+                                </div>
+                                <i class="fas fa-check-circle text-3xl text-pink-400"></i>
+                            </div>
+                            <div class="mt-4 text-sm text-pink-400 flex items-center">
+                                <i class="fas fa-arrow-up mr-2"></i>
+                                +2.4% vs dernier mois
+                            </div>
+                        </div>
+                    </div>
+
+    
+                    <!-- Graphique et Calendrier -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                        <!-- Graphique -->
+                        <div class="lg:col-span-2 bg-slate-800/50 p-6 rounded-2xl border border-slate-700/30 backdrop-blur-lg">
+                        <!-- Activités Récentes -->
+                        <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/30 backdrop-blur-lg">
+                            <h3 class="text-lg font-semibold text-slate-200 mb-4">Activités Récentes</h3>
+                            <div id="recentActivities" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Éléments dynamiques injectés ici -->
+                            </div>
+                        </div>
+
+
+                        </div>
+    
+                        <!-- Prochains Cours -->
+                        <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/30 backdrop-blur-lg">
+                            <h3 class="text-lg font-semibold text-slate-200 mb-4">Prochaines Séances</h3>
+                            <div class="space-y-4">
+                            <?php foreach ($coursEtudiant as $c) : ?>
+                                <div class="flex items-center p-3 hover:bg-slate-700/30 rounded-xl transition-colors">
+                                    <div class="w-10 h-10 bg-indigo-400/10 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-code text-indigo-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-slate-200"><?= $c["module_libelle"] ?></div>
+                                        <div class="text-sm text-slate-400"><?= $c["heure_debut"] ?> - <?= $c["salle"] ?></div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                                <!-- Ajouter d'autres cours -->
+                            </div>
+                        </div>
+                    </div>
+    
+                   
+                </main>
+    
+        <!-- Bouton Flottant -->
+        <button class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-br from-indigo-400 to-purple-600 rounded-xl shadow-2xl flex items-center justify-center hover:scale-105 transition-transform">
+            <i class="fas fa-plus text-white"></i>
+        </button>
+    
+        </div>
+    </div>
+    <script src="../../js/components/sidebarStudent.js"></script>
+    <script src="../../js/student/dashboard.js" type="module"></script>
+</body>
+</html>

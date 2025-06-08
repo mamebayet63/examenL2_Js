@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.min.css"
+  />
+  <title>Connexion Next-Gen - École 221</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .animate-gradient {
+      background-size: 300% 300%;
+      animation: gradient 8s ease infinite;
+    }
+  </style>
+  <script src="../../js/components/headerAtt.js"></script>
+</head>
+<body class="h-full bg-gradient-to-br from-gray-900 via-gray-850 to-gray-900 text-gray-100 overflow-x-hidden">
+  <!-- Floating background elements -->
+  <div class="fixed -top-96 -left-96 w-[1200px] h-[1200px] pointer-events-none bg-radial-gradient(...)"></div>
+
+  <div id="navBar"></div>
+
+  <main class="pt-24 max-w-7xl mx-auto px-4 sm:px-6 pb-12">
+    <div class="flex justify-between mb-6 bg-gradient-to-br from-gray-800/50 to-gray-900/70 border border-gray-700/30 backdrop-blur-xl shadow-2xl shadow-indigo-500/10">
+      <div class="relative overflow-hidden rounded-2xl p-8">
+        <div class="absolute -right-20 -top-20 w-96 h-96 bg-radial-gradient(from 60% at 50% 50%, rgba(129, 140, 248, 0.15) 0%, transparent 80%)"></div>
+        <h1 class="text-4xl font-bold bg-gradient-to-r from-indigo-300 via-blue-200 to-purple-300 bg-clip-text text-transparent mb-3">Tableau de Bord</h1>
+        <p class="text-lg font-medium text-indigo-300/90">Année scolaire 2023/2024</p>
+      </div>
+
+      <div class="bg-gray-800/30 backdrop-blur-md rounded-xl border border-gray-700/30 p-6">
+        <div class="flex flex-wrap gap-4 items-end">
+          <div class="flex-1 min-w-[250px]">
+            <label class="block text-sm font-medium text-indigo-200/90 mb-2">Niveau</label>
+            <div class="relative">
+              <select  id="niveauSelect" class="w-full bg-gray-900/50 border border-gray-700/50 text-gray-100 px-4 py-3 pr-8 rounded-xl 
+                                    backdrop-blur-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent appearance-none
+                                    transition-all hover:border-indigo-500/30">
+                <!-- Options -->
+              </select>
+              <i class="ri-arrow-down-s-line absolute right-3 top-3 text-gray-400/80 pointer-events-none"></i>
+            </div>
+          </div>
+
+          <button class="px-6 py-3 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl font-medium 
+                        hover:from-indigo-600 hover:to-purple-600 transition-all shadow-lg hover:shadow-indigo-500/20
+                        flex items-center gap-2 group">
+            <i class="ri-filter-3-line text-lg group-hover:rotate-12 transition-transform"></i>
+            Appliquer les Filtres
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container dynamique des classes -->
+    <div id="classContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div id="paginationControls" class="mt-6 flex justify-center gap-2"></div>
+</main>
+<div id="popupOverlay" class="fixed inset-0 bg-black/60 z-50 hidden">
+  <div class="bg-white rounded-lg max-w-md mx-auto mt-20 p-6 relative">
+    <button id="closePopup" class="absolute top-2 right-2 text-gray-500 hover:text-black">&times;</button>
+    
+    <h2 class="text-lg font-semibold mb-4">Liste des étudiants</h2>
+    <ul id="studentList" class="list-disc pl-5 space-y-1 mb-4"></ul>
+
+    <!-- Nouveau bouton pour ouvrir le formulaire d'ajout -->
+    <button id="openAddStudentButton">Ajouter un étudiant</button>
+  </div>
+</div>
+
+
+<div id="addStudentPopup" class="fixed inset-0 bg-black/60 z-50 hidden">
+  <div class="bg-white rounded-lg max-w-md mx-auto mt-20 p-6 relative">
+    <button id="closeAddStudentPopup" class="absolute top-2 right-2 text-gray-500 hover:text-black">&times;</button>
+
+    <h2 class="text-lg font-semibold mb-4">Ajouter un étudiant</h2>
+    <form id="addStudentForm" class="space-y-3">
+      <input type="text" id="nom" placeholder="Nom" class="w-full border px-3 py-2 rounded" required />
+      <input type="text" id="prenom" placeholder="Prénom" class="w-full border px-3 py-2 rounded" required />
+      <input type="email" id="email" placeholder="Email" class="w-full border px-3 py-2 rounded" required />
+      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Enregistrer</button>
+    </form>
+  </div>
+</div>
+
+  
+  <!-- <script src="../../js/attache/classes.js"></script> -->
+   <script type="module" src="../../js/attache/renderUI.js"></script>
+</body>
+</html>

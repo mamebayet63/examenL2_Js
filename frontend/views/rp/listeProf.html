@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Executive - École 221</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.min.css">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+<div class="min-h-screen flex">
+
+  <!-- Sidebar -->
+  <div id="sidebar"></div>
+
+  <!-- Main -->
+  <main class="flex-1 ml-72 p-8 space-y-8">
+    <div class="container mx-auto px-4 py-2">
+
+      <!-- Header -->
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+        <div class="space-y-2">
+          <h1 class="text-3xl font-bold bg-gradient-to-r from-[#b31822] to-orange-600 bg-clip-text text-transparent">Gestion des Professeurs</h1>
+          <p class="text-gray-400">Liste des enseignants et leurs spécialités</p>
+        </div>
+
+        <div class="w-full md:w-96 flex gap-2">
+          <div class="relative flex-1 group">
+            <input id="searchInput" type="text" placeholder="Rechercher un professeur..."
+                   class="w-full pl-10 pr-4 py-3 bg-gray-800 border-2 border-gray-700 rounded-xl text-white focus:outline-none focus:border-[#b31822] transition"
+            >
+            <i class="ri-search-line text-gray-400 absolute left-3 top-3.5"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div class="bg-gray-800 p-6 rounded-2xl border-2 border-gray-700/30 flex items-center gap-4">
+          <div class="p-3 bg-[#b31822]/20 rounded-xl">
+            <i class="ri-user-3-line text-2xl text-[#b31822]"></i>
+          </div>
+          <div>
+            <p class="text-gray-400 text-sm">Total Professeurs</p>
+            <p id="totalProfs" class="text-2xl font-bold">0</p>
+          </div>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-2xl border-2 border-gray-700/30 flex items-center gap-4">
+          <div class="p-3 bg-green-500/20 rounded-xl">
+            <i class="ri-checkbox-circle-line text-2xl text-green-500"></i>
+          </div>
+          <div>
+            <p class="text-gray-400 text-sm">Actifs</p>
+            <p id="actifProfs" class="text-2xl font-bold">0</p>
+          </div>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-2xl border-2 border-gray-700/30 flex items-center gap-4">
+          <div class="p-3 bg-blue-500/20 rounded-xl">
+            <i class="ri-book-line text-2xl text-blue-500"></i>
+          </div>
+          <div>
+            <p class="text-gray-400 text-sm">Matières</p>
+            <p id="totalMatieres" class="text-2xl font-bold">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Professeurs -->
+      <div id="profList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+      <!-- Bouton Ajout -->
+      <div class="fixed bottom-8 right-8">
+        <button id="openAddProfBtn" class="flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-[#b31822] to-orange-600 text-white rounded-2xl shadow-xl hover:scale-105 transition">
+            <i class="ri-user-add-line text-xl"></i>
+            <span class="font-semibold">Nouveau Professeur</span>
+          </button>
+          
+      </div>
+
+    </div>
+  </main>
+</div>
+<!-- Modal Ajout Prof -->
+<div id="addProfModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+    <div class="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-3xl w-full max-w-xl border border-gray-700/60 shadow-2xl">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold bg-gradient-to-r from-[#ff6b6b] to-orange-400 bg-clip-text text-transparent">
+          Ajouter un Professeur
+        </h2>
+        <button onclick="toggleModal(false)" class="p-2 hover:bg-gray-700/30 rounded-full transition-all duration-200">
+          <i class="ri-close-line text-2xl text-gray-400 hover:text-white"></i>
+        </button>
+      </div>
+  
+      <form id="addProfForm" class="space-y-6">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="relative">
+            <input type="text" id="prenom" placeholder="Prénom" 
+                   class="w-full pl-12 pr-4 py-3.5 bg-gray-800/60 border border-gray-700/50 rounded-xl 
+                          text-white placeholder-gray-500 focus:border-orange-400/50 focus:ring-2 focus:ring-orange-400/20
+                          transition-all duration-200">
+            <i class="ri-user-3-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+            <div id="prenomError" class="text-sm text-red-500 mt-1"></div>
+          </div>
+  
+          <div class="relative">
+            <input type="text" id="nom" placeholder="Nom" 
+                   class="w-full pl-12 pr-4 py-3.5 bg-gray-800/60 border border-gray-700/50 rounded-xl 
+                          text-white placeholder-gray-500 focus:border-orange-400/50 focus:ring-2 focus:ring-orange-400/20
+                          transition-all duration-200">
+            <i class="ri-user-2-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+            <div id="nomError" class="text-sm text-red-500 mt-1"></div>
+          </div>
+        </div>
+  
+        <div class="relative">
+          <input type="text" id="specialite" placeholder="Spécialité" 
+                 class="w-full pl-12 pr-4 py-3.5 bg-gray-800/60 border border-gray-700/50 rounded-xl 
+                        text-white placeholder-gray-500 focus:border-orange-400/50 focus:ring-2 focus:ring-orange-400/20
+                        transition-all duration-200">
+          <i class="ri-medal-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+          <div id="specialiteError" class="text-sm text-red-500 mt-1"></div>
+        </div>
+  
+        <div class="grid grid-cols-2 gap-4">
+          <div class="relative">
+            <input type="text" id="grade" placeholder="Grade" 
+                   class="w-full pl-12 pr-4 py-3.5 bg-gray-800/60 border border-gray-700/50 rounded-xl 
+                          text-white placeholder-gray-500 focus:border-orange-400/50 focus:ring-2 focus:ring-orange-400/20
+                          transition-all duration-200">
+            <i class="ri-award-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+            <div id="gradeError" class="text-sm text-red-500 mt-1"></div>
+          </div>
+  
+          <div class="relative">
+            <input type="email" id="email" placeholder="Email" 
+                   class="w-full pl-12 pr-4 py-3.5 bg-gray-800/60 border border-gray-700/50 rounded-xl 
+                          text-white placeholder-gray-500 focus:border-orange-400/50 focus:ring-2 focus:ring-orange-400/20
+                          transition-all duration-200">
+            <i class="ri-mail-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+            <div id="emailError" class="text-sm text-red-500 mt-1"></div>
+          </div>
+        </div>
+  
+        <div class="relative">
+          <input type="text" id="adresse" placeholder="Adresse" 
+                 class="w-full pl-12 pr-4 py-3.5 bg-gray-800/60 border border-gray-700/50 rounded-xl 
+                        text-white placeholder-gray-500 focus:border-orange-400/50 focus:ring-2 focus:ring-orange-400/20
+                        transition-all duration-200">
+          <i class="ri-map-pin-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+          <div id="adresseError" class="text-sm text-red-500 mt-1"></div>
+        </div>
+  
+        <div class="grid grid-cols-2 gap-4">
+          <div class="relative">
+            <input type="text" id="matricule" placeholder="Matricule" 
+                   class="w-full pl-12 pr-4 py-3.5 bg-gray-800/60 border border-gray-700/50 rounded-xl 
+                          text-white placeholder-gray-500 focus:border-orange-400/50 focus:ring-2 focus:ring-orange-400/20
+                          transition-all duration-200">
+            <i class="ri-fingerprint-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+            <div id="matriculeError" class="text-sm text-red-500 mt-1"></div>
+          </div>
+  
+          <div class="relative">
+            <input type="text" id="photo" placeholder="URL Photo" 
+                   class="w-full pl-12 pr-4 py-3.5 bg-gray-800/60 border border-gray-700/50 rounded-xl 
+                          text-white placeholder-gray-500 focus:border-orange-400/50 focus:ring-2 focus:ring-orange-400/20
+                          transition-all duration-200">
+            <i class="ri-image-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+            <div id="photoError" class="text-sm text-red-500 mt-1"></div>
+          </div>
+        </div>
+  
+        <button type="submit"  id="openAddProfBtn"
+                class="w-full py-4 px-6 bg-gradient-to-r from-[#ff6b6b] to-orange-500 hover:from-[#ff5757] hover:to-orange-400
+                       text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] 
+                       shadow-lg hover:shadow-orange-500/20 flex items-center justify-center gap-2">
+          <i class="ri-user-add-line"></i>
+          Ajouter le Professeur
+        </button>
+      </form>
+    </div>
+</div>
+  <!-- modal pour supprimer -->
+  <div id="confirmDeleteModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-6 rounded shadow-md text-center">
+      <p>Es-tu sûr de vouloir supprimer cet élément ?</p>
+      <div class="mt-4">
+        <button id="confirmDeleteBtn" class="bg-red-500 text-white px-4 py-2 rounded mr-2">Supprimer</button>
+        <button id="cancelDeleteBtn" class="bg-gray-300 px-4 py-2 rounded">Annuler</button>
+      </div>
+    </div>
+  </div>
+  
+<script src="../../js/rp/listeProf.js" type="module"></script>
+<script src="../../js/components/sidebarRp.js"></script>
+<script src="../../js/rp/ajoutProf.js" type="module-"></script>
+<script>
+  // Ajouter un événement d'ouverture du modal de suppression
+  document.getElementById('deleteBtn').addEventListener('click', function(){
+    document.getElementById('confirmDeleteModal').classList.remove('hidden');
+    });
+    
+</script>
+  
+</body>
+</html>

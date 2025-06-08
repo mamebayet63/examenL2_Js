@@ -1,0 +1,413 @@
+{
+  "utilisateurs": [
+    {
+      "id": "1",
+      "nom": "Ndiaye",
+      "prenom": "Aminata",
+      "email": "rp@ecole221.com",
+      "password": "123",
+      "role": "rp",
+      "avatar": "https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "telephone": "771234567",
+      "adresse": "yeumbeul,comico",
+      "matricule": "RP001",
+      "etat": "actif"
+    },
+    {
+      "id": "2",
+      "nom": "Sow",
+      "prenom": "Moussa",
+      "email": "m.sow@ecole221.com",
+      "password": "password123",
+      "role": "student",
+      "avatar": "profiles/prof_moussa.jpg",
+      "telephone": "772345678",
+      "matricule": "STU001",
+      "adresse": "yeumbeul,comico",
+      "etat": "actif"
+    },
+    {
+      "id": "3",
+      "nom": "Diallo",
+      "prenom": "Fatou",
+      "email": "f.diallo@ecole221.com",
+      "password": "password",
+      "role": "prof",
+      "avatar": "profiles/prof_fatou.jpg",
+      "telephone": "773456789",
+      "adresse": "yeumbeul",
+      "grade": "Docteur",
+      "specialite": "Informatique",
+      "matricule": "PROF-001",
+      "photo": "data:image/jpeg;base64,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",
+      "etat": "actif"
+    },
+    {
+      "id": "4",
+      "nom": "Kane",
+      "prenom": "Ibrahima",
+      "email": "attache@ecole221.com",
+      "password": "Attachepass",
+      "role": "attache",
+      "avatar": "profiles/attache_ibrahima.jpg",
+      "telephone": "774567890",
+      "adresse": "yeumbeul",
+      "matricule": "AT001",
+      "etat": "actif"
+    },
+    {
+      "id": "5",
+      "nom": "Fall",
+      "prenom": "Aïcha",
+      "email": "a.fall@ecole221.com",
+      "password": "Etud1pass",
+      "role": "student",
+      "avatar": "profiles/etud_aicha.jpg",
+      "telephone": "775678901",
+      "adresse": "yeumbeul,comico",
+      "matricule": "STU002",
+      "etat": "actif"
+    },
+    {
+      "id": "66f4",
+      "prenom": "new",
+      "nom": "prof",
+      "specialite": "new",
+      "grade": "new",
+      "email": "new@gmail.com",
+      "adresse": "new",
+      "matricule": "new",
+      "photo": "new",
+      "role": "prof",
+      "etat": "actif"
+
+    },
+    {
+      "id": "55e4",
+      "prenom": "pp",
+      "nom": "oo",
+      "specialite": "kefzjb",
+      "grade": "é\"r\"é",
+      "email": "jpp@gmail.com",
+      "adresse": "euihf",
+      "matricule": "eofuzh",
+      "photo": "doazhj",
+      "role": "prof",
+      "etat": "suprimée"
+    },
+    {
+      "id": "5cf3",
+      "nom": "yyyyyyyyyyy",
+      "email": "y@mail.com",
+      "adresse": "MMMMMMMMMMM",
+      "matricule": "gffff",
+      "photo": "etttttttttt",
+      "role": "student",
+      "etat": "suprimée"
+    },
+    {
+      "id": "d97b",
+      "nom": "mmm",
+      "email": "mm@gmail.com",
+      "adresse": "___",
+      "matricule": "kh",
+      "photo": "uigbjk",
+      "role": "student",
+      "etat": "actif"
+    }
+  ],
+  "classe": [
+    {
+      "id": "1",
+      "libelle": "Classe 1",
+      "id_filiere": "1",
+      "niveau": "L1",
+      "etat": "suprimée"
+    },
+    {
+      "id": "2",
+      "libelle": "Classe 2",
+      "id_filiere": "2",
+      "niveau": "L2",
+      "etat": "actif"
+    },
+    {
+      "id": "3",
+      "libelle": "new",
+      "niveau": "L1",
+      "id_filiere": "1",
+      "etat": "actif"
+    },
+    {
+      "id": "4",
+      "libelle": "popP",
+      "niveau": "L1",
+      "id_filiere": "2",
+      "etat": "suprimée"
+    },
+    {
+      "id": "10",
+      "libelle": "::::",
+      "niveau": "L1",
+      "id_filiere": "1",
+      "etat": "suprimée"
+    },
+    {
+      "id": "11",
+      "libelle": "new6",
+      "niveau": "L1",
+      "id_filiere": "2",
+      "etat": "actif"
+    },
+    {
+      "id": "12",
+      "libelle": "new7",
+      "niveau": "L1",
+      "id_filiere": "1",
+      "etat": "suprimée"
+    },
+    {
+      "id": "bbd5",
+      "libelle": "new",
+      "niveau": "L1",
+      "id_filiere": "undefined",
+      "etat": "suprimée"
+    },
+    {
+      "id": "aae9",
+      "libelle": "uzejhk",
+      "niveau": "L1",
+      "id_filiere": "2",
+      "etat": "suprimée"
+    },
+    {
+      "id": "720d",
+      "libelle": "zkj",
+      "niveau": "L1",
+      "id_filiere": null,
+      "etat": "suprimée"
+    },
+    {
+      "id": "ee4f",
+      "libelle": "&ée",
+      "niveau": "L1",
+      "id_filiere": 1,
+      "etat": "suprimée"
+    },
+    {
+      "id": "a104",
+      "libelle": "newww",
+      "niveau": "L1",
+      "id_filiere": 1,
+      "etat": "suprimée"
+    },
+    {
+      "id": "388c",
+      "libelle": "classe 6",
+      "niveau": "L1",
+      "id_filiere": 1,
+      "etat": "actif"
+    }
+  ],
+  "module": [
+    {
+      "id": "1",
+      "libelle": "Module 1",
+      "id_filiere": 1,
+      "etat": "actif"
+    },
+    {
+      "id": "2",
+      "libelle": "Module 2",
+      "id_filiere": 1,
+      "etat": "actif"
+    },
+    {
+      "id": "3",
+      "libelle": "Module 3",
+      "id_filiere": 2,
+      "etat": "actif"
+    }
+  ],
+  "filiere": [
+    {
+      "id": "1",
+      "libelle": "Filière 1",
+      "etat": "actif"
+    },
+    {
+      "id": "2",
+      "libelle": "Filière 2",
+      "etat": "actif"
+    }
+  ],
+  "inscription": [
+    {
+      "id": "1",
+      "id_etudiant": "2",
+      "id_classe": "1",
+      "annee": "2025",
+      "date_inscription": "31/03/2025",
+      "etat": "actif"
+    }
+  ],
+  "cours": [
+    {
+      "id": "1",
+      "id_module": 1,
+      "date": "2025-04-20",
+      "heure_debut": "10:00",
+      "heure_fin": "12:00",
+      "proffesseur_id": 1,
+      "salle": "sale B12",
+      "semestre": "S1",
+      "etat": "actif"
+    },
+    {
+      "id": "2",
+      "id_module": 2,
+      "date": "2025-03-04",
+      "heure_debut": "14:00",
+      "heure_fin": "16:00",
+      "proffesseur_id": 2,
+      "salle": "sale B13",
+      "semestre": "S1",
+      "etat": "actif"
+    },
+    {
+      "id": "3",
+      "id_module": 2,
+      "date": "2025-04-18",
+      "heure_debut": "08:30",
+      "heure_fin": "10:30",
+      "proffesseur_id": 3,
+      "salle": "sale A10",
+      "semestre": "S1",
+      "etat": "actif"
+    },
+    {
+      "id": "4",
+      "id_module": 2,
+      "date": "2025-04-20",
+      "heure_debut": "09:00",
+      "heure_fin": "11:00",
+      "proffesseur_id": 3,
+      "salle": "Salle A01",
+      "semestre": "S1",
+      "etat": "actif"
+    },
+    {
+      "id": "c8a5",
+      "date": "2025-05-02",
+      "heure_debut": "15:11",
+      "heure_fin": "16:11",
+      "professeur_id": "3",
+      "id_module": "3",
+      "etat": "actif",
+      "semestre": "S1"
+    },
+    {
+      "id": "af7b",
+      "date": "2025-05-02",
+      "heure_debut": "15:14",
+      "heure_fin": "16:14",
+      "professeur_id": "66f4",
+      "id_module": "1",
+      "etat": "actif",
+      "semestre": "S1"
+    },
+    {
+      "id": "1ced",
+      "date": "2025-05-03",
+      "heure_debut": "15:21",
+      "heure_fin": "18:21",
+      "professeur_id": "3",
+      "id_module": "3",
+      "etat": "actif",
+      "semestre": "S1"
+    },
+    {
+      "id": "ea9b",
+      "date": "2025-05-02",
+      "heure_debut": "15:32",
+      "heure_fin": "17:32",
+      "professeur_id": "66f4",
+      "id_module": "1",
+      "etat": "actif",
+      "semestre": "S1"
+    },
+    {
+      "id": "07ed",
+      "date": "2025-05-09",
+      "heure_debut": "16:08",
+      "heure_fin": "17:08",
+      "professeur_id": "3",
+      "id_module": "1",
+      "etat": "actif",
+      "semestre": "S1"
+    }
+  ],
+  "cours_classe": [
+    {
+      "id": "1",
+      "id_cours": 1,
+      "id_classe": 1,
+      "etat": "actif"
+    },
+    {
+      "id": "2",
+      "id_cours": 2,
+      "id_classe": 2,
+      "etat": "actif"
+    },
+    {
+      "id": "3",
+      "id_cours": 3,
+      "id_classe": 1,
+      "etat": "actif"
+    },
+    {
+      "id": "4",
+      "id_cours": 3,
+      "id_classe": 1,
+      "etat": "actif"
+    },
+    {
+      "id": "3366",
+      "id_cours": "ea9b",
+      "id_classe": "4",
+      "etat": "actif"
+    },
+    {
+      "id": "b6db",
+      "id_cours": "07ed",
+      "id_classe": "2",
+      "etat": "actif"
+    }
+  ],
+  "absence": [
+    {
+      "id": "1",
+      "id_etudiant": "2",
+      "id_cours": 3,
+      "etat": "En attente",
+      "justification": "malade"
+    }
+  ],
+  "justification": [
+    {
+      "id_justification": "1",
+      "absence_id": "1",
+      "motif": "malade",
+      "date_traitement": "",
+      "id": "c90f"
+    },
+    {
+      "id": "f00c",
+      "id_absence": "1",
+      "id_etudiant": "2",
+      "motif": "malade",
+      "date_ajout": "2025-05-01"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(10px, -10px) rotate(3deg); }
+            75% { transform: translate(-10px, 10px) rotate(-3deg); }
+        }
+    
+        @keyframes grid-pan {
+            from { background-position: 0% 0%; }
+            to { background-position: 100% 100%; }
+        }
+    
+        @keyframes text-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    
+        @keyframes arrow-pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+    
+        .animate-float {
+            animation: float 12s ease-in-out infinite;
+        }
+    
+        .animate-float-delayed {
+            animation: float 14s ease-in-out infinite 2s;
+        }
+    
+        .animate-grid-pan {
+            animation: grid-pan 40s linear infinite;
+        }
+    
+        .animate-text-flow {
+            background-size: 200% auto;
+            animation: text-flow 6s linear infinite;
+        }
+    
+        .animate-arrow-pulse {
+            animation: arrow-pulse 1.5s ease-out infinite;
+        }
+    
+        .animate-error-appear {
+            animation: error-appear 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+    
+        @keyframes error-appear {
+            from {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+    
+        .glass-container {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    
+        .cyber-logo {
+            position: relative;
+            &::before {
+                content: '';
+                position: absolute;
+                inset: -2px;
+                background: linear-gradient(45deg, #ff075b, #7e0fff, #0ff);
+                z-index: -1;
+                filter: blur(20px);
+                opacity: 0.3;
+            }
+        }

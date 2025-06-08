@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Executive - École 221</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="../../js/components/sidebarStudent.js"></script>
+  <script defer src="../../js/student/mesCours.js"></script>
+</head>
+<body class="dark:bg-slate-900 bg-gray-100 min-h-screen">
+  <!-- Container Principal -->
+  <div class="flex h-screen">
+    <!-- Sidebar dynamique -->
+    <div id="sidebar"></div>
+
+    <!-- Contenu Principal -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+      <!-- Header -->
+      <header class="bg-slate-800/90 backdrop-blur-lg border-b border-slate-700/50 p-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <button class="lg:hidden text-slate-300">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="text-lg font-semibold text-slate-200">Tableau de Bord</div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <button class="p-2 hover:bg-slate-700/30 rounded-full transition-colors">
+              <i class="fas fa-bell text-slate-300"></i>
+            </button>
+            <div class="flex items-center space-x-2">
+              <!-- Avatar et nom alimentés en JS -->
+              <div id="studentAvatar"
+                   class="h-8 w-8 rounded-full flex items-center justify-center
+                          bg-gradient-to-br from-indigo-500 to-blue-400 text-white font-bold
+                          ring-2 ring-indigo-500/30 transition-all">
+                <!-- Initiales -->
+              </div>
+              <span id="studentName" class="text-slate-300"></span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Contenu -->
+      <main class="flex-1 overflow-y-auto p-6 bg-slate-900/50">
+        <div class="pt-12 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <!-- Header des cours -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 space-y-4 md:space-y-0">
+            <div>
+              <h1 class="text-3xl font-bold text-slate-200">Vos Cours</h1>
+              <p id="currentSemester" class="text-slate-400 mt-2"></p>
+            </div>
+            <div class="flex space-x-3">
+              <form id="filterForm" class="flex items-center space-x-3">
+                <input type="date" id="dateFilter"
+                  class="px-4 py-2 bg-slate-800/50 rounded-xl border border-slate-700/50
+                         text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-400/30">
+                <button type="submit"
+                  class="px-4 py-2 bg-slate-800/50 hover:bg-slate-700/30 rounded-xl
+                         border border-slate-700/50 transition-all text-slate-300">
+                  <i class="fas fa-filter text-emerald-400 mr-2"></i>
+                  Filtrer
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Grille de cours -->
+          <div id="coursesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+          <!-- État vide -->
+          <div id="emptyState" class="hidden flex flex-col items-center justify-center w-full mt-12 gap-8">
+            <div class="relative w-64 h-64">
+              <img src="/image/notFound-removebg-preview.png" alt="Aucun cours"
+                   class="w-full h-full object-contain opacity-50">
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+            </div>
+            <div class="text-center space-y-2">
+              <p class="text-xl font-semibold text-gray-300">Aucun cours trouvé</p>
+              <p class="text-sm text-gray-500 max-w-md">
+                Aucun résultat pour votre recherche. Vérifiez le libellé ou essayez un autre terme.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pagination (à gérer ensuite en JS si besoin) -->
+          <!-- <div class="mt-8 flex justify-center space-x-2">
+            <button class="w-10 h-10 bg-slate-800/50 hover:bg-slate-700/30 rounded-lg text-slate-400 transition-colors">1</button>
+            <button class="w-10 h-10 bg-emerald-400/10 text-emerald-400 rounded-lg">2</button>
+            <button class="w-10 h-10 bg-slate-800/50 hover:bg-slate-700/30 rounded-lg text-slate-400 transition-colors">3</button>
+          </div> -->
+        </div>
+      </main>
+
+      <!-- Bouton Flottant -->
+      <!-- <button class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-br from-indigo-400 to-purple-600
+                      rounded-xl shadow-2xl flex items-center justify-center hover:scale-105 transition-transform">
+        <i class="fas fa-plus text-white"></i>
+      </button> -->
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Executive - École 221</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../../public/assets/css/rp.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <div class="min-h-screen flex">
+        <!-- Sidebar Futuriste Améliorée -->
+        <div id="sidebar"></div>
+
+        <!-- Contenu Principal -->
+        <main class="flex-1 ml-72 px-8 space-y-8">
+            <div class="container mx-auto px-4 py-8">
+                <!-- Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+                    <div class="space-y-2">
+                        <h1 class="text-3xl font-bold bg-gradient-to-r from-[#b31822] to-orange-600 bg-clip-text text-transparent">
+                            Gestion des Classes
+                        </h1>
+                        <p class="text-gray-400">Explorez et gérez les classes de l'école</p>
+                    </div>
+
+                    <form id="searchForm" action="" method="get">
+                        <div class="w-full md:w-[500px] flex gap-2">
+                          <div class="relative flex-1 group">
+                            <input
+                              name="searchClasse"
+                              id="searchClasse"
+                              type="text"
+                              placeholder="Rechercher une classe..."
+                              class="w-full pl-10 pr-4 py-3 bg-gray-800 border-2 border-gray-700 rounded-xl text-white 
+                                     focus:outline-none focus:border-[#b31822] focus:ring-2 focus:ring-[#b31822]/30
+                                     transition-all duration-300 placeholder-gray-500"
+                            >
+                            <i class="ri-search-line text-gray-400 absolute left-3 top-3.5 group-focus-within:text-[#b31822]"></i>
+                          </div>
+                      
+                          <select id="filiereFilter" class="px-4 py-3 bg-gray-800 border-2 border-gray-700 text-white rounded-xl">
+                            <option value="">Toutes les filières</option>
+                            <!-- options injectées via JS -->
+                          </select>
+                      
+                          <button type="submit" class="px-4 py-3 bg-[#b31822] hover:bg-[#d11a2a] rounded-xl text-white 
+                            transition-all hover:scale-105">
+                            <i class="ri-filter-line text-lg"></i>
+                          </button>
+                        </div>
+                      </form>
+                      
+                </div>
+
+                <!-- Contenu des classes simulé avec JavaScript -->
+                <div id="class-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Les classes seront injectées ici via JavaScript -->
+                </div>
+                <div id="class-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                <div id="pagination-controls" class="mt-6 flex justify-center items-center gap-3"></div>
+
+                <!-- Bouton Ajout Classe -->
+                <div class="fixed bottom-8 right-8">
+                    <button id="openModal" class="flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-[#b31822] to-orange-600 
+                                        text-white rounded-2xl shadow-xl hover:scale-105 transition-transform">
+                        <i class="ri-add-line text-xl"></i>
+                        <span class="font-semibold">Nouvelle Classe</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-gray-800 p-6 rounded-2xl w-96 space-y-4 relative">
+            <h2 class="text-xl font-bold mb-2">Ajouter une nouvelle classe</h2>
+            <form id="addClassForm" class="space-y-3">
+                <input type="text" id="libelle" placeholder="Libellé de la classe"
+                    class="w-full p-3 rounded-xl bg-gray-700 text-white border border-gray-600 focus:outline-none" >
+                <div id="libelleError" class="text-sm text-red-500 mt-1"></div>
+                <select id="niveau" class="w-full p-3 rounded-xl bg-gray-700 text-white border border-gray-600 focus:outline-none" >
+                    <option value="">Sélectionner un niveau</option>
+                    <!-- options injectées via JS -->
+                </select>
+                <div id="niveauError" class="text-sm text-red-500 mt-1"></div>
+                <select id="id_filiere" class="w-full p-3 rounded-xl bg-gray-700 text-white border border-gray-600 focus:outline-none" >
+                    <option value="">Sélectionner une filière</option>
+                    <!-- options injectées via JS -->
+                </select>
+                <div id="filiereError" class="text-sm text-red-500 mt-1"></div>
+
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" id="closeModal" class="px-4 py-2 bg-gray-600 rounded-xl hover:bg-gray-500">Annuler</button>
+                    <button type="submit" class="px-4 py-2 bg-[#b31822] rounded-xl hover:bg-[#d11a2a] text-white">Ajouter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../js/rp/listeClasse.js" type="module"></script>
+    <script src="../../js/components/sidebarRp.js"></script>
+    <script src="../../js/rp/ajoutClasse.js" type="module"></script>
+    <script src="../../js/rp/modal.js"></script>
+</body>
+</html>

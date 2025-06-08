@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion JSON Server</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
+
+  <div class="w-full max-w-md bg-gray-800 p-8 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold mb-6 text-center">Connexion</h1>
+    <form id="loginForm" class="space-y-6">
+      <div>
+        <label for="email" class="block text-sm">Email</label>
+        <input type="email" id="email" class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-rose-500" placeholder="Votre email">
+      </div>
+      <div>
+        <label for="password" class="block text-sm">Mot de passe</label>
+        <input type="password" id="password" class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-rose-500" placeholder="Votre mot de passe">
+      </div>
+      <p id="error-message" class="text-rose-400 text-sm hidden"></p>
+      <button type="submit" class="w-full py-3 bg-rose-600 hover:bg-rose-700 rounded text-white font-bold">Se connecter</button>
+    </form>
+  </div>
+
+  <script src="../js/auth/login.js"></script>
+
+</body>
+</html>

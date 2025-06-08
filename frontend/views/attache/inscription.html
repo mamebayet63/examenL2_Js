@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.min.css" />
+  <title>Connexion Next-Gen - École 221</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-gradient {
+      background-size: 300% 300%;
+      animation: gradient 8s ease infinite;
+    }
+  </style>
+  <script src="../../js/components/headerAtt.js"></script>
+</head>
+<body class="h-full bg-gradient-to-br from-gray-900 via-gray-850 to-gray-900 text-gray-100 overflow-x-hidden">
+  <div id="navBar"></div>
+
+  <main class="pt-24 max-w-7xl mx-auto px-4 sm:px-6 pb-12">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 space-y-4 md:space-y-0">
+        <h2 class="text-2xl font-bold text-indigo-400 neon-effect">Classe A - Promotion 2025</h2>
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <input type="text" id="searchInput" placeholder="Rechercher un étudiant..." class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-500 text-gray-100 transition-all">
+          <button id="open-modal-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 flex items-center justify-center gap-2 transition-colors">
+            <svg class="w-5 h-5"><use href="#icon-plus" /></svg>
+            Nouvel Étudiant
+          </button>
+          
+        </div>
+      </div>
+
+      <!-- Tableau dynamique -->
+      <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden shadow-xl">
+        <table class="min-w-full divide-y divide-gray-700">
+          <thead class="bg-gray-800">
+            <tr>
+              <th class="px-6 py-4 text-left text-sm font-semibold text-indigo-400">Matricule</th>
+              <th class="px-6 py-4 text-left text-sm font-semibold text-indigo-400">Étudiant</th>
+              <th class="px-6 py-4 text-left text-sm font-semibold text-indigo-400">Adresse</th>
+              <th class="px-6 py-4 text-left text-sm font-semibold text-indigo-400">Absences</th>
+              <th class="px-6 py-4 text-left text-sm font-semibold text-indigo-400">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="studentTableBody" class="divide-y divide-gray-700">
+            <!-- Étudiants ajoutés par JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+        <symbol id="icon-plus" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </symbol>
+      </svg>
+    </div>
+  </main>
+<!-- Modal de confirmation thème sombre -->
+<div id="confirm-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-gray-900/90 backdrop-blur-sm">
+    <div class="animate-in bg-gray-800 rounded-xl shadow-2xl p-8 w-full max-w-md fade-in-zoom-in">
+      <div class="flex items-start mb-5">
+        <div class="flex-shrink-0 p-2 bg-red-500/10 rounded-lg">
+          <!-- Icône d'avertissement -->
+          <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+          </svg>
+        </div>
+        <div class="ml-4">
+          <h2 class="text-xl font-bold text-gray-100 mb-2">Suppression définitive</h2>
+          <p class="text-base text-gray-300 leading-relaxed">Cette action va supprimer définitivement l'étudiant de la base de données. <span class="font-medium text-red-400">Cette opération est irréversible.</span></p>
+        </div>
+      </div>
+      
+      <div class="flex justify-end gap-3 mt-6">
+        <button id="cancel-btn" class="px-5 py-2.5 text-gray-200 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors duration-200">
+          Annuler
+        </button>
+        <button id="confirm-btn" class="px-5 py-2.5 text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium">
+          Supprimer
+        </button>
+      </div>
+    </div>
+</div>
+  <!-- Modal d'ajout étudiant -->
+<div id="add-student-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-gray-900/90 backdrop-blur-sm">
+    <div class="bg-gray-800 rounded-xl shadow-2xl p-8 w-full max-w-lg space-y-6">
+      <h2 class="text-xl font-bold text-indigo-400">Ajouter un nouvel étudiant</h2>
+  
+      <form id="add-student-form" class="space-y-4">
+        <input type="text" name="nom" placeholder="Nom complet" required class="w-full px-4 py-2 bg-gray-700 rounded-lg text-white focus:ring-2 focus:ring-indigo-500">
+        <input type="email" name="email" placeholder="Email" required class="w-full px-4 py-2 bg-gray-700 rounded-lg text-white focus:ring-2 focus:ring-indigo-500">
+        <input type="text" name="adresse" placeholder="Adresse" class="w-full px-4 py-2 bg-gray-700 rounded-lg text-white focus:ring-2 focus:ring-indigo-500">
+        <input type="text" name="matricule" placeholder="Matricule" required class="w-full px-4 py-2 bg-gray-700 rounded-lg text-white focus:ring-2 focus:ring-indigo-500">
+        <input type="text" name="photo" placeholder="URL de la photo" class="w-full px-4 py-2 bg-gray-700 rounded-lg text-white focus:ring-2 focus:ring-indigo-500">
+        
+        <div class="flex justify-end gap-3 pt-4">
+          <button type="button" id="close-modal-btn" class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg">Annuler</button>
+          <button type="submit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg">Ajouter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Script JS -->
+  <script src="../../js/attache/listeEtudiant.js" type="module"></script>
+  <script src="../../js/attache/inscrire.js"></script>
+</body>
+</html>
