@@ -1,20 +1,16 @@
 import { addToJsonServer } from '../utils/utils.js';
-  // Fonction pour afficher/masquer le modal
-  function toggleModal(show) {
-    const modal = document.getElementById('addProfModal');
-    if (show) {
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    } else {
-      modal.classList.remove('flex');
-      modal.classList.add('hidden');
-    }
-  }
+
 
   // Ajoute un écouteur d’événement au bouton "Nouveau Professeur"
-  document.getElementById('openAddProfBtn').addEventListener('click', function () {
-    toggleModal(true);
-  });
+  document.getElementById('openAddProfBtn').addEventListener('click', () => {
+  toggleModal(true);
+  
+});
+document.getElementById('closeAddProfBtn').addEventListener('click', () => {
+  toggleModal(false);
+});
+
+
 
 // Gestion ouverture / fermeture modal
 function toggleModal(state) {
@@ -26,10 +22,7 @@ function toggleModal(state) {
     }
   }
   
-  // Bouton d'ouverture (externe)
-  document.getElementById('openAddProfBtn').addEventListener('click', () => {
-    toggleModal(true);
-  });
+
   
   // Validation et soumission du formulaire
   document.getElementById('addProfForm').addEventListener('submit', function(e) {
@@ -98,7 +91,7 @@ function toggleModal(state) {
     // Données à envoyer ou à traiter
     const newProf = {
       prenom, nom, specialite, grade, email, adresse, matricule, photo,
-      role: "prof", 
+      role: "prof", etat: "actif"
 
     };
   

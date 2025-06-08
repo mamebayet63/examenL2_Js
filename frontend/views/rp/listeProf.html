@@ -88,7 +88,7 @@
         <h2 class="text-2xl font-bold bg-gradient-to-r from-[#ff6b6b] to-orange-400 bg-clip-text text-transparent">
           Ajouter un Professeur
         </h2>
-        <button onclick="toggleModal(false)" class="p-2 hover:bg-gray-700/30 rounded-full transition-all duration-200">
+        <button id="closeAddProfBtn"  class="p-2 hover:bg-gray-700/30 rounded-full transition-all duration-200">
           <i class="ri-close-line text-2xl text-gray-400 hover:text-white"></i>
         </button>
       </div>
@@ -172,7 +172,7 @@
           </div>
         </div>
   
-        <button type="submit"  id="openAddProfBtn"
+        <button type="submit"  id="openAddProfBtnpp"
                 class="w-full py-4 px-6 bg-gradient-to-r from-[#ff6b6b] to-orange-500 hover:from-[#ff5757] hover:to-orange-400
                        text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] 
                        shadow-lg hover:shadow-orange-500/20 flex items-center justify-center gap-2">
@@ -195,14 +195,8 @@
   
 <script src="../../js/rp/listeProf.js" type="module"></script>
 <script src="../../js/components/sidebarRp.js"></script>
-<script src="../../js/rp/ajoutProf.js" type="module-"></script>
-<script>
-  // Ajouter un événement d'ouverture du modal de suppression
-  document.getElementById('deleteBtn').addEventListener('click', function(){
-    document.getElementById('confirmDeleteModal').classList.remove('hidden');
-    });
-    
-</script>
+<script src="../../js/rp/ajoutProf.js" type="module"></script>
+
   
 </body>
 </html>
