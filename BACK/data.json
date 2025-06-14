@@ -152,6 +152,16 @@
       "photo": "https://img.freepik.com/free-photo/portrait-attractive-dark-skinned-student-wearing-checkered-shirt-with-confident-joyful-expression-standing-chalkboard-wall_273609-5907.jpg?uid=R128466424&ga=GA1.1.810359603.1727369869&semt=ais_hybrid&w=740",
       "role": "prof",
       "etat": "actif"
+    },
+    {
+      "id": "2422",
+      "nom": "new",
+      "email": "new@gmail.com",
+      "adresse": "new",
+      "matricule": "new",
+      "photo": "ooo",
+      "role": "student",
+      "etat": "actif"
     }
   ],
   "classe": [

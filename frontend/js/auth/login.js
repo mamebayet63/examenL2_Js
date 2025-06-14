@@ -23,7 +23,7 @@
 
           if (user) {
             // Connexion réussie
-            alert(`Bienvenue ${user.prenom} ${user.nom} ! Rôle : ${user.role}`);
+            // alert(`Bienvenue ${user.prenom} ${user.nom} ! Rôle : ${user.role}`);
             // Tu pourrais stocker les infos dans localStorage si besoin :
             localStorage.setItem("user", JSON.stringify(user));
             // Puis rediriger

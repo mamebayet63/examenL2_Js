@@ -120,7 +120,8 @@
     async function loadJustifications() {
       const res = await fetch('http://localhost:3000/justification');
       const data = await res.json();
-  
+      console.log(data);
+      
       const tbody = document.getElementById('justificationBody');
       tbody.innerHTML = ''; // On vide le contenu avant d'ajouter
   
